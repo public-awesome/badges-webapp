@@ -1,32 +1,43 @@
 {
-  "name": "terra-trophies-webapp",
-  "version": "0.1.0",
-  "author": "larry_0x <larry_0x@protonmail.com>",
-  "license": "UNLICENSED",
-  "scripts": {
-    "dev": "parcel ./src/index.html",
-    "build": "rm -rfv ./dist && parcel build ./src/index.html --public-url ./"
-  },
-  "dependencies": {
-    "@terra-money/terra.js": "^2.0.15",
-    "@terra-money/wallet-provider": "^2.3.0",
-    "bootstrap": "^5.1.3",
-    "popper.js": "^1.16.1",
-    "secp256k1": "^4.0.2"
-  },
-  "devDependencies": {
-    "@types/secp256k1": "^4.0.3",
-    "parcel": "^2.0.0",
-    "prettier": "^2.4.1",
-    "ts-node": "^10.4.0",
-    "typescript": "^4.4.4"
-  },
+  "name": "badges-webapp",
+  "description": "Web frontend for interacting with Badges smart contracts",
+  "version": "1.0.0",
+  "author": "larry <gm@larry.engineer>",
+  "license": "GPL-3.0-or-later",
+  "keywords": [
+    "cosmos",
+    "cosmwasm",
+    "nft"
+  ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/larry0x/terra-trophies-webapp.git"
+    "url": "git+https://github.com/st4k3h0us3/badges-webapp.git"
   },
   "bugs": {
-    "url": "https://github.com/larry0x/terra-trophies-webapp/issues"
+    "url": "https://github.com/st4k3h0us3/badges-webapp/issues"
   },
-  "homepage": "https://github.com/larry0x/terra-trophies-webapp#readme"
+  "homepage": "https://github.com/st4k3h0us3/badges-webapp#readme",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@chakra-ui/react": "^2.3.1",
+    "@cosmjs/cosmwasm-stargate": "^0.28.13",
+    "@cosmjs/proto-signing": "^0.28.13",
+    "next": "^12.2.5",
+    "react": "^18.2.0",
+    "zustand": "^4.1.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.18",
+    "@typescript-eslint/eslint-plugin": "^5.36.2",
+    "@typescript-eslint/parser": "^5.36.2",
+    "eslint": "^8.23.0",
+    "eslint-config-next": "^12.2.5",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-react": "^7.31.6",
+    "typescript": "^4.8.2"
+  }
 }
