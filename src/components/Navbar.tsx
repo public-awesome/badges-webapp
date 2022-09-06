@@ -23,8 +23,8 @@ export default function Navbar() {
   const btnRef = useRef() as React.MutableRefObject<HTMLButtonElement>;
 
   return (
-    <Box w="100%">
-      <Flex justify="space-between" align="center" pl="3" pr="1" py="4">
+    <Box w="100%" mb="4">
+      <Flex justify="space-between" align="center" pl="2" pr="0" py="4">
         <NavbarLogo />
         <Spacer />
         <Button

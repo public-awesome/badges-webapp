@@ -9,4 +9,11 @@ export default extendTheme({
     body: `Varela Round,${defaultSansSerif},${defaultEmoji}`,
     mono: "Menlo,monospace",
   },
+  styles: {
+    global: {
+      "html, body": {
+        fontWeight: "700"
+      }
+    }
+  }
 });

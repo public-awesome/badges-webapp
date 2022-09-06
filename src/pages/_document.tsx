@@ -12,7 +12,7 @@ class BadgesDocument extends Document {
             href="https://fonts.googleapis.com/css2?family=Chewy&family=Varela+Round&display=swap"
           />
         </Head>
-        <body>
+        <body style={{ overflowY: "scroll" }}>
           <Main />
           <NextScript />
         </body>
