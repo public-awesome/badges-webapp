@@ -8,7 +8,6 @@ import {
   Flex,
   HStack,
   Spacer,
-  Text,
   VStack,
 } from "@chakra-ui/react";
 import { useRef } from "react";
@@ -25,22 +24,19 @@ export default function Navbar() {
 
   return (
     <Box w="100%">
-      <Flex justify="space-between" align="center" px="3" mb="3">
+      <Flex justify="space-between" align="center" pl="3" pr="1" py="4">
         <NavbarLogo />
         <Spacer />
-        <HStack display={["none", null, "flex", null]} spacing="20">
-          <NavbarLink text="Claim" href="/" />
-          <NavbarLink text="Create" href="/create" disabled={true} />
-          <NavbarLink text="Gallery" href="/gallery" disabled={true} />
-        </HStack>
         <Button
-          display={[null, null, "none", null]}
           variant="simple"
-          minW="1.5rem"
+          minH="3rem"
+          minW="3rem"
+          p="2"
+          _hover={{ background: "#e1ebff" }}
           ref={btnRef}
           onClick={onOpen}
         >
-          <BurgerIcon color="black" width="1.5rem" height="1.5rem" />
+          <BurgerIcon h="1.5rem" w="1.5rem" color="black" />
         </Button>
       </Flex>
       <Drawer
@@ -53,24 +49,22 @@ export default function Navbar() {
       >
         <DrawerOverlay />
         <DrawerContent>
-          <Box p="6">
+          <HStack w="100%" px="12" py="4" align="stretch">
+            <NavbarLogo />
+            <Spacer></Spacer>
             <Button
               variant="simple"
               onClick={onClose}
-              minH="5rem"
-              w="100%"
-              p="6"
-              justifyContent="flex-start"
+              h="100%"
+              p="2"
               transition="0.1s all"
               _hover={{ background: "#e1ebff" }}
             >
-              <CloseIcon width="2.5rem" height="2.5rem" />
-              <Text fontSize="xl" ml="2">
-                Close
-              </Text>
+              <CloseIcon width="2.125rem" height="2.125rem" />
             </Button>
-          </Box>
-          <VStack height="100%" px="12" spacing="8" align="left">
+          </HStack>
+          <hr />
+          <VStack height="100%" px="12" mt="8" spacing="8" align="left">
             <NavbarLink text="Claim" href="/" fontSize="xx-large" />
             <NavbarLink text="Create" href="/create" fontSize="xx-large" disabled={true} />
             <NavbarLink text="Gallery" href="/gallery" fontSize="xx-large" disabled={true} />

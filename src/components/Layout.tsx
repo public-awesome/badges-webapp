@@ -12,7 +12,7 @@ interface Props {
 const Layout: FC<Props> = ({ children }) => {
   return (
     <Flex minHeight="100vh" direction="column">
-      <Container maxW="900px" mx="auto" mt="6" mb="20">
+      <Container maxW="600px" mx="auto" mb="20">
         <Navbar />
         {children}
       </Container>
