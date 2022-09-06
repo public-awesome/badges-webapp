@@ -1,4 +1,5 @@
 import {
+  useDisclosure,
   Box,
   Button,
   FormControl,
@@ -7,10 +8,15 @@ import {
   HStack,
   Image,
   Input,
+  Modal,
+  ModalCloseButton,
+  ModalContent,
+  ModalOverlay,
   Text,
   VStack,
 } from "@chakra-ui/react";
 import { useState } from "react";
+import { QrReader } from "react-qr-reader";
 
 import ScanIcon from "./ScanIcon";
 
@@ -33,33 +39,103 @@ enum Page {
   Submit,
 }
 
+async function validateIdStr(_idStr: string) {
+  // TODO
+}
+
+async function validatePrivkeyStr(_privkeyStr: string) {
+  // TODO
+}
+
 export default function Claim() {
   const [page, setPage] = useState(Page.Credential);
+  const [idStr, setIdStr] = useState("");
+  const [privkeyStr, setPrivkeyStr] = useState("");
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const credentialPage = (
     <Box>
       <Text mb="4">1️⃣ Enter your claim credentials</Text>
-      <Button w="100%" minH="8rem">
+      <Button w="100%" minH="8rem" onClick={onOpen}>
         <HStack>
           <ScanIcon w="2.5rem" h="2.5rem" mr="2" />
           <Text>Scan QR code</Text>
         </HStack>
       </Button>
+      <Modal isOpen={isOpen} onClose={onClose}>
+        <ModalOverlay />
+        <ModalContent bg="rgba(0,0,0,0)" boxShadow="" maxW="90%" border="none">
+          <QrReader
+            constraints={{
+              facingMode: "environment",
+            }}
+            onResult={(result, _error) => {
+              if (!!result) {
+                const qrData = JSON.parse(result.getText());
+                if (!!qrData["id"] && !!qrData["privkeyStr"]) {
+                  setIdStr(qrData["id"]);
+                  setPrivkeyStr(qrData["privkeyStr"]);
+                  onClose();
+                } else {
+                  onClose();
+                  alert("invalid QR!!!");
+                }
+              }
+            }}
+            videoContainerStyle={{
+              padding: "0",
+              borderRadius: "var(--chakra-radii-lg)",
+              // TODO: The video takes a 1-2 seconds to load. At the mean time the box shadow is
+              // very ugly. Is there any way to delay the displaying of box shadow after the video
+              // is loaded?
+              boxShadow: "var(--chakra-shadows-dark-lg)",
+            }}
+            videoStyle={{
+              position: "relative",
+              borderRadius: "var(--chakra-radii-lg)",
+            }}
+          />
+          <ModalCloseButton
+            size="lg"
+            top="var(--chakra-space-3)"
+            fill="white"
+            bg="whiteAlpha.700"
+            _hover={{ bg: "whiteAlpha.800" }}
+            _active={{ bg: "whiteAlpha.900" }}
+          />
+        </ModalContent>
+      </Modal>
       <Text
         my="4"
-        _before={{ right: "0.5rem", ml: "2", ...hrStyle }}
-        _after={{ left: "0.5rem", mr: "2", ...hrStyle }}
+        _before={{
+          right: "0.5rem",
+          ml: "2",
+          ...hrStyle,
+        }}
+        _after={{
+          left: "0.5rem",
+          mr: "2",
+          ...hrStyle,
+        }}
       >
         or
       </Text>
       <Text mb="4">Enter manually:</Text>
       <FormControl mb="4">
         <FormLabel>id</FormLabel>
-        <Input placeholder="a number" />
+        <Input
+          placeholder="a number"
+          value={idStr}
+          onChange={(event) => validateIdStr(event.target.value)}
+        />
       </FormControl>
       <FormControl mb="4">
         <FormLabel>key</FormLabel>
-        <Input placeholder="hex-encoded string" />
+        <Input
+          placeholder="hex-encoded string"
+          value={privkeyStr}
+          onChange={(event) => validatePrivkeyStr(event.target.value)}
+        />
       </FormControl>
       <Button variant="outline" onClick={() => setPage(Page.Preview)}>
         Next
