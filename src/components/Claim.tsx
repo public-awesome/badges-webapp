@@ -128,7 +128,7 @@ export default function Claim() {
         <Input placeholder="stars1..." />
         <FormHelperText>
           Unfortunately, autofill by connecting to a wallet app isn&apos;t supported yet. Please
-          copy-paste the address here.
+          copy-paste your address here.
         </FormHelperText>
       </FormControl>
       <Button variant="outline" mr="1" onClick={() => setPage(Page.Preview)}>

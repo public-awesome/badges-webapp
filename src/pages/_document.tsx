@@ -9,7 +9,7 @@ class BadgesDocument extends Document {
           <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
           <link
             rel="stylesheet"
-            href="https://fonts.googleapis.com/css2?family=Chewy&family=Varela+Round&display=swap"
+            href="https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@400;700&display=swap"
           />
         </Head>
         <body style={{ overflowY: "scroll" }}>

@@ -6,14 +6,17 @@ const defaultEmoji = "Apple Color Emoji,Segoe UI Emoji,Segoe UI Symbol,Noto Colo
 export default extendTheme({
   fonts: {
     heading: `Chewy,${defaultSansSerif},${defaultEmoji}`,
-    body: `Varela Round,${defaultSansSerif},${defaultEmoji}`,
+    body: `Nunito,${defaultSansSerif},${defaultEmoji}`,
     mono: "Menlo,monospace",
   },
   styles: {
     global: {
-      "html, body": {
-        fontWeight: "700"
-      }
-    }
-  }
+      h2: {
+        fontWeight: "400 !important",
+      },
+      p: {
+        fontWeight: "700",
+      },
+    },
+  },
 });
