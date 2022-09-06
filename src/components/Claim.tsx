@@ -2,8 +2,8 @@ import {
   Box,
   Button,
   FormControl,
+  FormHelperText,
   FormLabel,
-  Heading,
   HStack,
   Image,
   Input,
@@ -38,7 +38,7 @@ export default function Claim() {
 
   const credentialPage = (
     <Box>
-      <Text mb="4">Step 1. Enter your claim credentials</Text>
+      <Text mb="4">1️⃣ Enter your claim credentials</Text>
       <Button w="100%" minH="8rem">
         <HStack>
           <ScanIcon w="2.5rem" h="2.5rem" mr="2" />
@@ -69,7 +69,7 @@ export default function Claim() {
 
   const previewPage = (
     <Box>
-      <Text mb="4">Step 2. Preview of your badge</Text>
+      <Text mb="4">2️⃣ Preview of your badge</Text>
       <Image src={mockImageUrl} alt="badge-image" w="100%" mx="auto" mb="4" borderRadius="xl" />
       <VStack alignItems="start" mb="4">
         <Box>
@@ -122,10 +122,14 @@ export default function Claim() {
 
   const submitPage = (
     <Box>
-      <Text mb="4">Step 3. Claim now!</Text>
+      <Text mb="4">3️⃣ Claim now!</Text>
       <FormControl mb="4">
         <FormLabel>Your Stargaze address</FormLabel>
         <Input placeholder="stars1..." />
+        <FormHelperText>
+          Unfortunately, autofill by connecting to a wallet app isn&apos;t supported yet. Please
+          copy-paste the address here.
+        </FormHelperText>
       </FormControl>
       <Button variant="outline" mr="1" onClick={() => setPage(Page.Preview)}>
         Back
@@ -142,12 +146,5 @@ export default function Claim() {
     [Page.Submit]: submitPage,
   };
 
-  return (
-    <Box px="2">
-      <Heading fontSize="xl" mb="4">
-        🏆 Claim badge
-      </Heading>
-      {pages[page]}
-    </Box>
-  );
+  return <Box px="2">{pages[page]}</Box>;
 }
