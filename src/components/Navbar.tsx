@@ -19,6 +19,7 @@ import NavbarLogo from "./NavbarLogo";
 
 export default function Navbar() {
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   // https://github.com/DefinitelyTyped/DefinitelyTyped/issues/35572#issuecomment-493942129
   const btnRef = useRef() as React.MutableRefObject<HTMLButtonElement>;
 
@@ -32,7 +33,9 @@ export default function Navbar() {
           minH="3rem"
           minW="3rem"
           p="2"
-          _hover={{ background: "#e1ebff" }}
+          _hover={{
+            background: "#e1ebff",
+          }}
           ref={btnRef}
           onClick={onOpen}
         >
@@ -58,7 +61,9 @@ export default function Navbar() {
               h="100%"
               p="2"
               transition="0.1s all"
-              _hover={{ background: "#e1ebff" }}
+              _hover={{
+                background: "#e1ebff",
+              }}
             >
               <CloseIcon width="2.125rem" height="2.125rem" />
             </Button>

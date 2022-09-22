@@ -1,5 +1,8 @@
 import { Flex, Container } from "@chakra-ui/react";
-import { FC, ReactNode } from "react";
+import { FC, ReactNode, useEffect } from "react";
+
+import { Network } from "src/configs";
+import { useStore } from "src/store";
 
 import Navbar from "./Navbar";
 
@@ -10,6 +13,18 @@ interface Props {
 }
 
 const Layout: FC<Props> = ({ children }) => {
+  const store = useStore();
+
+  // initialize the store when the app is mounted.
+  // this includes picking a random account to sign the tx, and initialize the wasm client
+  //
+  // include an empty dependency array so that this only runs once
+  //
+  // TODO: the network to use can be defined by an env var, but here we just hardcode it
+  useEffect(() => {
+    store.init(Network.Testnet);
+  }, []);
+
   return (
     <Flex minHeight="100vh" direction="column">
       <Container maxW="600px" mx="auto" mb="20">

@@ -1,8 +1,44 @@
 import { chakra, Heading } from "@chakra-ui/react";
-import * as csstype from "csstype";
 import NextLink from "next/link";
 import { useRouter } from "next/router";
 import { FC } from "react";
+
+const DisabledAnchor: FC = ({ children }) => {
+  return (
+    <chakra.a transition="0.1s all" color="#adb5bd" pointerEvents="none">
+      {children}
+    </chakra.a>
+  );
+};
+
+const ActiveAnchor: FC = ({ children }) => {
+  return (
+    <chakra.a
+      transition="0.1s all"
+      color="black"
+      textDecoration="underline"
+      textUnderlineOffset="6px"
+      textDecorationThickness="3.5px"
+      pointerEvents="none"
+    >
+      {children}
+    </chakra.a>
+  );
+};
+
+const EnabledAnchor: FC = ({ children }) => {
+  return (
+    <chakra.a
+      transition="0.1s all"
+      color="#adb5bd"
+      _hover={{
+        color: "#adb5bd",
+      }}
+    >
+      {children}
+    </chakra.a>
+  );
+};
 
 type Props = {
   text: string;
@@ -14,34 +50,22 @@ type Props = {
 const NavbarLink: FC<Props> = ({ text, href, fontSize = "xl", disabled = false }) => {
   const { asPath } = useRouter();
 
-  const wrapperStyle = disabled
-    ? {
-        color: "#adb5bd",
-        pointerEvents: "none" as csstype.Property.PointerEvents,
-      }
-    : asPath === href
-    ? {
-        color: "black",
-        textDecoration: "underline",
-        textUnderlineOffset: "6px",
-        textDecorationThickness: "3.5px",
-        pointerEvents: "none" as csstype.Property.PointerEvents,
-      }
-    : {
-        color: "#adb5bd",
-        _hover: {
-          color: "#0d6efd",
-        },
-      };
+  const content = (
+    <Heading fontSize={fontSize}>
+      {text}
+      {disabled ? <sup> (soon)</sup> : null}
+    </Heading>
+  );
 
   return (
     <NextLink href={href} passHref>
-      <chakra.a transition="0.1s all" {...wrapperStyle}>
-        <Heading fontSize={fontSize}>
-          {text}
-          {disabled ? <sup> (soon)</sup> : null}
-        </Heading>
-      </chakra.a>
+      {disabled ? (
+        <DisabledAnchor>{content}</DisabledAnchor>
+      ) : asPath === href ? (
+        <ActiveAnchor>{content}</ActiveAnchor>
+      ) : (
+        <EnabledAnchor>{content}</EnabledAnchor>
+      )}
     </NextLink>
   );
 };
