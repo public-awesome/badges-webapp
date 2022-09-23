@@ -11,6 +11,17 @@ class BadgesDocument extends Document {
             rel="stylesheet"
             href="https://fonts.googleapis.com/css2?family=Chewy&family=Nunito:wght@400;700&display=swap"
           />
+          <style>
+            {`
+              @keyframes wiggle {
+                0%   { transform: rotate(0deg);  }
+                80%  { transform: rotate(0deg);  }
+                85%  { transform: rotate(5deg);  }
+                95%  { transform: rotate(-5deg); }
+                100% { transform: rotate(0deg);  }
+              }
+            `}
+          </style>
         </Head>
         <body style={{ overflowY: "scroll" }}>
           <Main />
