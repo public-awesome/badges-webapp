@@ -15,6 +15,7 @@ function SpinnerWrapper() {
 }
 
 function TxHashText(txhash: string) {
+  const store = useStore();
   return (
     <Flex>
       <Text variant="dimmed" ml="auto" mr="3">
@@ -22,7 +23,7 @@ function TxHashText(txhash: string) {
       </Text>
       <Link
         isExternal
-        href={`https://www.mintscan.io/stargaze/txs/${txhash}`}
+        href={store.networkConfig!.getExplorerUrl(txhash)}
         ml="3"
         mr="auto"
         my="auto"

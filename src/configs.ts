@@ -17,6 +17,8 @@ export type NetworkConfig = {
   // contract addresses
   hub: string;
   nft: string;
+  // a function that takes a txhash and returns a block explorer URL showing this tx
+  getExplorerUrl(txhash: string): string;
 };
 
 export const NETWORK_CONFIGS: { [key in Network]: NetworkConfig } = {
@@ -30,6 +32,7 @@ export const NETWORK_CONFIGS: { [key in Network]: NetworkConfig } = {
     gasPrices: "0ustars",
     hub: "",
     nft: "",
+    getExplorerUrl: (txhash: string) => `https://www.mintscan.io/stargaze/txs/${txhash}`,
   },
   [Network.Testnet]: {
     name: "testnet",
@@ -41,6 +44,8 @@ export const NETWORK_CONFIGS: { [key in Network]: NetworkConfig } = {
     gasPrices: "0ustars",
     hub: "stars1yqzlqv4hpumnnswannzgtkrd73lmal5lglx29j0mjed0vqudw04qc8j5ga",
     nft: "stars1sz5xunz3zanlpl2ldq8w74tfa37cx06hfv6tq47y9a36zzz053ss7wwhzk",
+    getExplorerUrl: (txhash: string) =>
+      `https://stargaze-testnet-explorer.pages.dev/stargaze/tx/${txhash}`,
   },
   [Network.Localhost]: {
     name: "local",
@@ -52,6 +57,7 @@ export const NETWORK_CONFIGS: { [key in Network]: NetworkConfig } = {
     gasPrices: "0ustars",
     hub: "stars14hj2tavq8fpesdwxxcu44rty3hh90vhujrvcmstl4zr3txmfvw9srsl6sm",
     nft: "stars1nc5tatafv6eyq7llkr2gv50ff9e22mnf70qgjlv737ktmt4eswrq096cja",
+    getExplorerUrl: (_txhash: string) => "", // there's no explorer for localhost
   },
 };
 
