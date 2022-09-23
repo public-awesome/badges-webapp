@@ -14,21 +14,13 @@ function SpinnerWrapper() {
   );
 }
 
-function TxHashText(txhash: string) {
-  const store = useStore();
+function TxHashText(txhash: string, url: string) {
   return (
     <Flex>
       <Text variant="dimmed" ml="auto" mr="3">
         Tx Hash
       </Text>
-      <Link
-        isExternal
-        href={store.networkConfig!.getExplorerUrl(txhash)}
-        ml="3"
-        mr="auto"
-        my="auto"
-        textUnderlineOffset="0.3rem"
-      >
+      <Link isExternal href={url} ml="3" mr="auto" my="auto" textUnderlineOffset="0.3rem">
         {truncateString(txhash, 6, 6)}
         <ExternalLinkIcon
           ml="2"
@@ -86,7 +78,12 @@ const TxModal: FC<Props> = ({ getMsg, isOpen, onClose }) => {
             .wasmClient!.execute(store.senderAddr!, store.networkConfig!.hub, msg, "auto", "", [])
             .then((result) => {
               setTxStatusHeader("Transaction Successful");
-              setTxStatusDetail(TxHashText(result.transactionHash));
+              setTxStatusDetail(
+                TxHashText(
+                  result.transactionHash,
+                  store.networkConfig!.getExplorerUrl(result.transactionHash)
+                )
+              );
               setTxStatusIcon(<SuccessIcon h="80px" w="80px" />);
               setShowCloseBtn(true);
             })
