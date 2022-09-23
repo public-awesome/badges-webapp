@@ -125,6 +125,11 @@ export default function Claim() {
     // stateful checks
     //--------------------
 
+    // skip if the query client isn't initialized
+    if (!store.wasmClient) {
+      return setIdValidNull();
+    }
+
     store.getBadge(id).then((badge) => {
       if (badge.rule !== "by_keys" && !("by_key" in badge.rule)) {
         return setIdValidFalse("id is valid but this badge is not publicly mintable!");
@@ -146,7 +151,7 @@ export default function Claim() {
 
       return setIdValidTrue();
     });
-  }, [idStr]);
+  }, [idStr, store.wasmClient]);
 
   // whenever input key is changed, we need to validate it
   useEffect(() => {
@@ -196,6 +201,11 @@ export default function Claim() {
     // stateful checks
     //--------------------
 
+    // skip if the query client isn't initialized
+    if (!store.wasmClient) {
+      return setPrivkeyValidNull();
+    }
+
     // Now we know the key is a valid secp256k1 privkey, we need to check whether it is eligible for
     // claiming the badge.
     // Firstly, if we don't already have a valid badge id, it's impossible to determine to badge's
@@ -232,7 +242,7 @@ export default function Claim() {
         return setPrivkeyValidFalse(`this key is not eligible to claim badge #${idStr}`);
       }
     });
-  }, [privkeyStr, idStr, idValid]);
+  }, [privkeyStr, idStr, idValid, store.wasmClient]);
 
   // whenver input owner address is changed, we need to validate it
   useEffect(() => {
@@ -277,6 +287,11 @@ export default function Claim() {
     // stateful checks
     //--------------------
 
+    // skip if the query client isn't initialized
+    if (!store.wasmClient) {
+      return setOwnerValidNull();
+    }
+
     // Now we know the owner is a valid bech32 address, we need to check whether it is eligible for
     // claiming the badge.
     // Firstly, if we don't already have a valid badge id, it's impossible to determine to badge's
@@ -299,7 +314,7 @@ export default function Claim() {
           `failed to check this address' eligibility to claim badge #${idStr}: ${err}`
         );
       });
-  }, [owner, idStr, idValid]);
+  }, [owner, idStr, idValid, store.wasmClient]);
 
   // if the id has been updated, we need to update the metadata displayed on the preview page
   // only update if the id is valid AND wasm client has been initialized
@@ -322,7 +337,16 @@ export default function Claim() {
         console.log(`failed to fetch badge with id "${idStr}"! reason:`, err);
         setBadge(undefined);
       });
-  }, [idStr, idValid]);
+  }, [idStr, idValid, store.wasmClient]);
+
+  // when the component is first mounted, we check the URL query params and auto-fill id and key
+  useEffect(() => {
+    const url = window.location.href;
+    const split = url.split("?");
+    const params = new URLSearchParams(split[1]);
+    setIdStr(params.get("id") ?? "");
+    setPrivkeyStr(params.get("key") ?? "");
+  }, []);
 
   async function getMintMsg() {
     const privKey = Buffer.from(privkeyStr, "hex");
