@@ -214,10 +214,11 @@ export default function Claim() {
       return setPrivkeyValidNull();
     }
 
+    const pubkeyStr = bytesToHex(secp256k1.publicKeyCreate(hexToBytes(privkeyStr)));
+
     // this block of code is fucking atrocious, but "it just works"
     store.getBadge(Number(idStr)).then((badge) => {
       if (badge.rule === "by_keys") {
-        const pubkeyStr = bytesToHex(secp256k1.publicKeyCreate(hexToBytes(privkeyStr)));
         store
           .isKeyWhitelisted(Number(idStr), pubkeyStr)
           .then((isWhitelisted) => {
@@ -233,7 +234,7 @@ export default function Claim() {
             );
           });
       } else if ("by_key" in badge.rule) {
-        if (privkeyStr === badge.rule["by_key"]) {
+        if (pubkeyStr === badge.rule["by_key"]) {
           return setPrivkeyValidTrue();
         } else {
           return setPrivkeyValidFalse(`this key is not eligible to claim badge #${idStr}`);
