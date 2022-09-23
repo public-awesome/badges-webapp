@@ -1,7 +1,6 @@
 import { Flex, Container } from "@chakra-ui/react";
 import { FC, ReactNode, useEffect } from "react";
 
-import { Network } from "src/configs";
 import { useStore } from "src/store";
 
 import Navbar from "./Navbar";
@@ -20,7 +19,7 @@ const Layout: FC<Props> = ({ children }) => {
   //
   // include an empty dependency array so that this only runs once
   useEffect(() => {
-    store.init((process.env["NETWORK"] ?? "testnet") as Network);
+    store.init();
   }, []);
 
   return (

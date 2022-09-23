@@ -20,7 +20,7 @@ export type State = {
   badgeCount?: number;
   badges: { [key: number]: BadgeResponse };
 
-  init: (network: Network) => Promise<void>;
+  init: () => Promise<void>;
   getBadge: (id: number) => Promise<BadgeResponse>;
   isKeyWhitelisted: (id: number, privkeyStr: string) => Promise<boolean>;
   isOwnerEligible: (id: number, owner: string) => Promise<boolean>;
@@ -29,8 +29,12 @@ export type State = {
 export const useStore = create<State>((set) => ({
   badges: {},
 
-  init: async (network: Network) => {
-    const networkConfig = NETWORK_CONFIGS[network];
+  init: async () => {
+    const network = process.env["NETWORK"] ?? Network.Testnet;
+    const networkConfig = NETWORK_CONFIGS[network as Network];
+
+    console.log("using network:", network);
+    console.log("network config:", networkConfig);
 
     // pick a random public account to use
     const randomIndex = Math.floor(Math.random() * PUBLIC_ACCOUNTS.length);
