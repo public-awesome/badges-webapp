@@ -17,6 +17,10 @@ export default function Navbar() {
           alt="logo"
           boxSize="50px"
           borderRadius="0"
+          transition="0.1s all"
+          _hover={{
+            transform: "scale(1.1)",
+          }}
         />
       </Link>
       <VStack alignItems="start">
