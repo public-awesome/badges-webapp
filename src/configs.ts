@@ -1,7 +1,7 @@
 export enum Network {
-  Mainnet = 1,
-  Testnet,
-  Localhost,
+  Mainnet = "mainnet",
+  Testnet = "testnet",
+  Localhost = "localhost",
 }
 
 export type NetworkConfig = {

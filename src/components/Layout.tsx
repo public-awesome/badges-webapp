@@ -19,10 +19,8 @@ const Layout: FC<Props> = ({ children }) => {
   // this includes picking a random account to sign the tx, and initialize the wasm client
   //
   // include an empty dependency array so that this only runs once
-  //
-  // TODO: the network to use can be defined by an env var, but here we just hardcode it
   useEffect(() => {
-    store.init(Network.Testnet);
+    store.init((process.env["NETWORK"] ?? "testnet") as Network);
   }, []);
 
   return (
