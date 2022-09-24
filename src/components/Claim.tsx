@@ -349,6 +349,18 @@ export default function Claim() {
     setPrivkeyStr(params.get("key") ?? "");
   }, []);
 
+  // if image url starts with `ipfs://...`, we grab the CID and return it with Larry's pinata gateway
+  // otherwise, we return the url unmodified
+  function parseImageUrl(url: string) {
+    const ipfsPrefix = "ipfs://";
+    if (url.startsWith(ipfsPrefix)) {
+      const cid = url.slice(ipfsPrefix.length);
+      return `https://ivory-worried-gorilla-470.mypinata.cloud/ipfs/${cid}`;
+    } else {
+      return url;
+    }
+  }
+
   async function getMintMsg() {
     const privKey = Buffer.from(privkeyStr, "hex");
     const msg = `claim badge ${idStr} for user ${owner}`;
@@ -522,11 +534,12 @@ export default function Claim() {
     <Box>
       <Text mb="4">2️⃣ Preview of your badge</Text>
       <Image
-        src={badge?.metadata.image ?? fillerImageUrl}
+        src={parseImageUrl(badge?.metadata.image ?? fillerImageUrl)}
         alt="badge-image"
         w="100%"
         mx="auto"
         mb="4"
+        border="1px solid rgb(226, 232, 240)"
         borderRadius="xl"
       />
       <VStack alignItems="start" mb="4">

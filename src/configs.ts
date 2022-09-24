@@ -30,8 +30,8 @@ export const NETWORK_CONFIGS: { [key in Network]: NetworkConfig } = {
     gas: undefined,
     gasAdjustment: 1.4,
     gasPrices: "0ustars",
-    hub: "",
-    nft: "",
+    hub: "stars13unm9tgtwq683wplupjlgw39nghm7xva7tmu7m29tmpxxnkhpkcq4gf3p4",
+    nft: "stars1z5qcmx9frn2y92cjy3k62gzylkezkphdwrx3675mvug3fd9l26fshdd85t",
     getExplorerUrl: (txhash: string) => `https://www.mintscan.io/stargaze/txs/${txhash}`,
   },
   [Network.Testnet]: {
