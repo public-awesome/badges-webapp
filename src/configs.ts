@@ -71,6 +71,14 @@ export const NETWORK_CONFIGS: { [key in Network]: NetworkConfig } = {
  * this error.
  */
 export const PUBLIC_ACCOUNTS = [
+  "daughter equip install sugar spray radio dance shift hundred potato diagram crumble elbow jealous once muscle grass fatal avoid obey tray record ill photo",
+  "soft electric bulb cube sniff goddess fringe smoke rate note cigar luggage gap cat speed step clinic valve know wreck hobby surge deer farm",
+  "defense fog school raccoon drive own choose truth quality harsh unique fluid person tape transfer spice supply dice van alter food define wing dirt",
+  "canyon runway apart voyage mutual rhythm prison tiny sing please fault betray shadow swear toward beauty transfer sure leopard prosper assist humor stage pyramid",
+  "follow remind believe repair domain fade sheriff old clerk rule member settle frost skin require squirrel rifle fee lonely scrub famous misery move outdoor",
+  "forward slide culture few lawn spawn portion under already student night beauty inject hat foster stumble exit area vault fade one want brush live",
+  "prepare soup swing tonight volcano lens glimpse inform unaware tomorrow expire hurt appear improve purchase poet update monitor female defense sun donor frequent embody",
+  "dismiss verify together spike agree human keen cinnamon wreck indoor arrow swap unfold imitate reject silk food junk orphan amount enhance such bean rug",
   "left physical cliff pumpkin chimney sock claim asset refuse rug neutral shrug wall obey fruit punch lunar battle harvest note merit bottom later garlic",
   "coast keen penalty old tape winner pepper squeeze replace behave abandon master stay sample practice excite bright school pioneer cheese scale law census miracle",
   "impulse embrace subject subway update unfair wool uniform reject weapon diesel north duty loan mother alarm shock agree lady piece spring toilet uniform disorder",
