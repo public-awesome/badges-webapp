@@ -355,7 +355,7 @@ export default function Claim() {
     const ipfsPrefix = "ipfs://";
     if (url.startsWith(ipfsPrefix)) {
       const cid = url.slice(ipfsPrefix.length);
-      return `https://ivory-worried-gorilla-470.mypinata.cloud/ipfs/${cid}`;
+      return `https://ipfs.stargaze.zone/ipfs/${cid}`;
     } else {
       return url;
     }
