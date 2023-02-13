@@ -42,7 +42,7 @@ export const NETWORK_CONFIGS: { [key in Network]: NetworkConfig } = {
     gas: undefined,
     gasAdjustment: 1.4,
     gasPrices: "0ustars",
-    hub: "stars1yqzlqv4hpumnnswannzgtkrd73lmal5lglx29j0mjed0vqudw04qc8j5ga",
+    hub: "stars1mqvzv4wr6j46grrdhfqjmrvt0t6hkmxmwxn2esfdeynzgv9mdanseh99j9",
     nft: "stars1sz5xunz3zanlpl2ldq8w74tfa37cx06hfv6tq47y9a36zzz053ss7wwhzk",
     getExplorerUrl: (txhash: string) =>
       `https://stargaze-testnet-explorer.pages.dev/stargaze/tx/${txhash}`,
